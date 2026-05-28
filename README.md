@@ -1,11 +1,11 @@
-<h1 align="center">MOI Control Gate</h1>
+ï»¿<h1 align="center">MOI Control Gate</h1>
 
 <p align="center">
-  <strong>Public architecture notes for evidence boundaries, LLM output review, and workflow reliability</strong>
+  <strong>Control before automation.</strong>
 </p>
 
 <p align="center">
-  A public-facing architecture repository for documenting how LLM-assisted workflows can separate claims, evidence, verification, approval, and release boundaries.
+  Public architecture notes for evidence boundaries, LLM output review, workflow reliability, and epistemic drift control.
 </p>
 
 <p align="center">
@@ -16,19 +16,31 @@
 
 ## Overview
 
-MOI Control Gate is a public architecture repository for documenting the broader direction behind MOI: a control-gate approach for making LLM-assisted workflows easier to review, constrain, and audit.
+AI is already inside real work.
 
-The project focuses on one practical workflow problem: LLM output can look complete before it is verified.
+It reads context, shapes decisions, supports tools, summarizes evidence, triggers workflows, and influences what people treat as ready.
 
-A model can generate fluent text. A workflow can appear finished. A claim can sound confident. A reference can look like evidence. A person can approve an action.
+The problem is not generation.
 
-Those are different states.
+The problem is control.
 
-MOI Control Gate exists to describe a public-safe architecture for separating those states:
+MOI Control Gate is a public architecture repository for documenting a control-gate approach to AI-assisted workflows: separating claims, evidence, verification, approval, release boundaries, and human decision points before model output becomes trusted workflow state.
+
+The core distinction is simple:
 
 ```text
 declared != evidenced != verified != approved
 ```
+
+A model can generate fluent text.
+A workflow can look complete.
+A claim can sound confident.
+A reference can look like evidence.
+A person can approve an action.
+
+Those are different states.
+
+MOI Control Gate exists to describe a public-safe architecture for keeping those states separate.
 
 This repository is not a production runtime, security product, verifier, or complete implementation. It is a public architecture layer intended to explain the problem, the boundaries, the design direction, and the safe public vocabulary around the project.
 
@@ -39,13 +51,14 @@ This repository is not a production runtime, security product, verifier, or comp
 | Area                  | Description                                                                                       |
 | --------------------- | ------------------------------------------------------------------------------------------------- |
 | Repository type       | Public architecture documentation                                                                 |
-| Main purpose          | Evidence boundaries and LLM output review for technical workflows                                 |
+| Main purpose          | Evidence boundaries, LLM output review, workflow reliability, and epistemic drift control         |
+| Core phrase           | Control before automation                                                                         |
 | Primary users         | Technical artists, pipeline builders, workflow designers, AI-assisted production users, reviewers |
 | Main value            | Clearer separation between claims, evidence, verification, approval, and release language         |
-| Current status        | Initial public README                                                                             |
+| Current status        | Public architecture README                                                                        |
 | Implementation status | Not included in this repository yet                                                               |
 | Runtime status        | Not included in this repository                                                                   |
-| Related public demo   | [`MOI-Lite-Demo`](https://github.com/ghbanck/MOI-Lite-Demo)                                       |
+| Related public demo   | [MOI-Lite-Demo](https://github.com/ghbanck/MOI-Lite-Demo)                                         |
 | Future direction      | Public-safe control-gate architecture and possible MCP/API-facing design notes                    |
 | License               | MIT                                                                                               |
 
@@ -53,19 +66,19 @@ This repository is not a production runtime, security product, verifier, or comp
 
 ## Current Status
 
-This repository currently contains documentation only.
+This repository currently contains public architecture documentation.
 
 It is safe for this repo to begin small. The goal is not to publish a private runtime or expose internal control logic. The goal is to define the public-facing architecture direction clearly and safely.
 
-| Area                       | Status                                                              |
-| -------------------------- | ------------------------------------------------------------------- |
-| Public architecture README | In progress                                                         |
-| Public-safe vocabulary     | In progress                                                         |
-| Private implementation     | Not included                                                        |
-| Runtime code               | Not included                                                        |
-| Demo code                  | Kept in [`MOI-Lite-Demo`](https://github.com/ghbanck/MOI-Lite-Demo) |
-| MCP/API implementation     | Future direction                                                    |
-| Production readiness       | Not claimed                                                         |
+| Area                       | Status                                                            |
+| -------------------------- | ----------------------------------------------------------------- |
+| Public architecture README | Active                                                            |
+| Public-safe vocabulary     | In progress                                                       |
+| Private implementation     | Not included                                                      |
+| Runtime code               | Not included                                                      |
+| Demo code                  | Kept in [MOI-Lite-Demo](https://github.com/ghbanck/MOI-Lite-Demo) |
+| MCP/API implementation     | Future direction                                                  |
+| Production readiness       | Not claimed                                                       |
 
 This repository should not be read as proof that a production system has been deployed, audited, certified, or completed.
 
@@ -89,10 +102,10 @@ This repository is intended to carry the broader public architecture narrative:
 
 ```text
 MOI-Lite-Demo
-= public demo / façade / presentation layer
+= public demo / faÃ§ade / presentation layer
 
 MOI-Control-Gate
-= public architecture direction for workflow reliability, LLM output review, and evidence boundaries
+= public architecture direction for workflow reliability, LLM output review, evidence boundaries, and epistemic drift control
 ```
 
 MOI Lite Demo should remain small, safe, and intentionally limited.
@@ -152,9 +165,31 @@ The architecture should help separate:
 * what remains unknown;
 * what requires human decision.
 
-The purpose is not to make the LLM “truthful” by itself.
+The purpose is not to build a â€œsmarter model.â€
 
-The purpose is to avoid treating the LLM as the final authority.
+The purpose is to build a control layer around the model: the part that decides what a workflow is allowed to trust, use, escalate, approve, or release.
+
+---
+
+## Control Before Automation
+
+Automation without control can amplify bad context.
+
+Better prompts do not fix contaminated context.
+Restricted data does not automatically guarantee a clean handoff.
+A confident answer does not create evidence.
+A generated summary does not create approval.
+
+MOI Control Gate starts from the opposite direction:
+
+```text
+first control the workflow state;
+then decide what can be automated.
+```
+
+The model generates.
+
+The control gate defines the trust boundary.
 
 ---
 
@@ -169,7 +204,7 @@ Input or candidate output
 -> claim classification
 -> evidence boundary check
 -> support / contradiction assessment
--> release decision
+-> release-boundary check
 -> public-safe response
 ```
 
@@ -177,7 +212,7 @@ A control-gate layer should provide structure around the model:
 
 ```text
 LLM formulates text.
-Backend controls state.
+System state is controlled outside the model.
 Evidence must be checked.
 Human approval remains separate.
 Public output must respect the release boundary.
@@ -186,6 +221,31 @@ Public output must respect the release boundary.
 This repository may eventually document public-safe versions of those layers.
 
 It will not publish private prompts, proprietary heuristics, private routing instructions, sensitive enforcement logic, or operational internals.
+
+---
+
+## MOI Lite Public Pipeline Breakdown
+
+The diagram below is a public-facing pipeline breakdown used to explain the control logic behind the MOI Lite demo layer.
+
+It should be read as an explanatory architecture diagram, not as a full map of the private runtime.
+
+![MOI Control Gate pipeline simple graph](docs/assets/moi-cg-pipeline-simple-graph.png)
+
+The diagram communicates the core public idea:
+
+```text
+request intake
+-> classification
+-> evidence resolution
+-> gate decision
+-> escalation / block / pass
+-> contract or response construction
+-> output review
+-> final response
+```
+
+Its purpose is to make the architecture understandable without exposing private implementation details.
 
 ---
 
@@ -209,11 +269,13 @@ At this stage, the system should not assume validation happened.
 
 A statement has a reference, file, log, source, or supporting material.
 
-Evidence may exist, but it still needs to be checked. A source existing somewhere does not automatically prove the claim.
+Evidence may exist, but it still needs to be checked.
+
+A source existing somewhere does not automatically prove the claim.
 
 ### Verified
 
-The available evidence has been checked within the system’s defined verification boundary.
+The available evidence has been checked within the systemâ€™s defined verification boundary.
 
 Verification should be explicit, scoped, and traceable.
 
@@ -227,7 +289,15 @@ Contradiction should override unsupported confidence.
 
 A human or authorized process has approved an action.
 
-Approval does not make an unsupported claim true. Approval and truth are different workflow states.
+Approval does not make an unsupported claim true.
+
+Approval and truth are different workflow states.
+
+### Released
+
+A response has passed the public-output boundary.
+
+Release does not mean the claim is true unless the evidence and verification state support it.
 
 ---
 
@@ -266,6 +336,7 @@ make verification status explicit.
 * **Uncertainty should stay visible.**
 * **Public output should not imply unavailable proof.**
 * **When evidence is missing, the system should not invent closure.**
+* **Control comes before automation.**
 
 ---
 
@@ -339,6 +410,7 @@ workflow-control research
 evidence-boundary design
 LLM output review architecture
 human decision separation
+epistemic drift control
 public-safe control-gate documentation
 ```
 
@@ -381,6 +453,7 @@ docs/
     unsupported-certainty.md
     approval-boundaries.md
     source-of-truth-separation.md
+    epistemic-drift-control.md
 
   examples/
     public-response-examples.md
@@ -456,7 +529,7 @@ A generated answer may contain several claims:
 "The file was updated. The tests passed. The deployment is ready."
 ```
 
-A control gate should be able to separate them:
+A control-gate architecture should separate them:
 
 ```text
 "The file was updated." -> requires diff or file evidence.
@@ -474,7 +547,7 @@ This repository is the public starting point for MOI Control Gate.
 
 ```text
 Purpose: public architecture documentation
-Current contents: README only
+Current contents: README and public diagram asset
 Implementation: not included yet
 Private runtime: not included
 Public demo reference: MOI-Lite-Demo
@@ -498,3 +571,4 @@ The goal is to explain the architecture direction clearly and safely.
 ## License
 
 MIT License. See `LICENSE` when available.
+

@@ -171,6 +171,21 @@ The purpose is to build a control layer around the model: the part that decides 
 
 ---
 
+## Visual Example: Output Review Before and After
+
+The example below shows the difference between a fluent model response and a reviewed output where claims, evidence status, and correction boundaries are made explicit.
+
+<p align="center">
+  <img src="docs/assets/before-after-moiprotocol.png">
+</p>
+
+This is an illustrative example, not proof of production deployment, external verification, or runtime authority.
+<p align="center">
+  <img src="docs/assets/correction-list.png">
+</p>
+
+---
+
 ## Control Before Automation
 
 Automation without control can amplify bad context.

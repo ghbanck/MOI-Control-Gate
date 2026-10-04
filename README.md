@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3fb950"></a>
   <img alt="Repository: docs only" src="https://img.shields.io/badge/repository-docs%20only-8250df">
   <a href="https://github.com/ghbanck/MOI-Lite-Demo"><img alt="Related: MOI-Lite-Demo" src="https://img.shields.io/badge/related-MOI--Lite--Demo-0078d4"></a>
 </p>
@@ -590,5 +591,5 @@ The goal is to explain the architecture direction clearly and safely.
 
 ## License
 
-MIT License. See `LICENSE` when available.
+MIT License. See [`LICENSE`](LICENSE).
 

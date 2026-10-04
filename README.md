@@ -12,6 +12,12 @@
   <em>A fluent answer is not verification.</em>
 </p>
 
+<p align="center">
+  <img alt="Type: architecture docs" src="https://img.shields.io/badge/type-architecture%20docs-8250df">
+  <img alt="Runtime: not included" src="https://img.shields.io/badge/runtime-not%20included-6e7681">
+  <a href="https://github.com/ghbanck/MOI-Lite-Demo"><img alt="Related: MOI-Lite-Demo" src="https://img.shields.io/badge/related-MOI--Lite--Demo-0078d4"></a>
+</p>
+
 ---
 
 ## Overview
